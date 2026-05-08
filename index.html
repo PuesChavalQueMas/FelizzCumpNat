@@ -4,50 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumpleaños, Nataly! ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --rosa: #ff4da6;
             --dorado: #ffd700;
-            --trans: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            --lila: #e879f9;
+            --trans: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
-            width: 100%; min-height: 100%;
-            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             font-family: 'Inter', sans-serif;
             color: white;
+            background: #0a001a;
         }
 
         .bg {
-            position: fixed; inset: 0;
+            position: fixed;
+            inset: 0;
             background: url('https://i.pinimg.com/736x/c4/b8/8f/c4b88f8ec4620f2c4d1cd9d622850268.jpg') center/cover no-repeat;
-            filter: brightness(0.4) blur(4px);
+            filter: brightness(0.38) blur(4px);
             z-index: 0;
         }
 
         .bg-grad {
-            position: fixed; inset: 0;
-            background: linear-gradient(135deg, rgba(26,0,51,0.85) 0%, rgba(74,0,114,0.7) 100%);
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26,0,51,0.88) 0%, rgba(74,0,114,0.75) 50%, rgba(26,0,51,0.9) 100%);
             z-index: 1;
         }
 
         .btn-cerrar {
-            position: fixed; top: 20px; left: 20px; z-index: 200;
-            padding: 10px 22px;
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 200;
+            padding: 12px 26px;
             background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.3);
             border-radius: 50px;
-            color: white; font-weight: 700; font-size: 0.88rem;
-            cursor: pointer; transition: var(--trans);
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--trans);
         }
-        .btn-cerrar:hover { background: rgba(255,77,166,0.55); transform: scale(1.04); }
+        .btn-cerrar:hover {
+            background: rgba(255,77,166,0.7);
+            transform: scale(1.05);
+        }
 
         .page {
-            position: relative; z-index: 10;
-            min-height: 100vh;
+            position: relative;
+            z-index: 10;
+            height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: stretch;
@@ -57,68 +71,70 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 80px 56px 60px 72px;
-            border-right: 1px solid rgba(255,255,255,0.08);
+            padding: 80px 70px 80px 90px;
+            position: relative;
         }
 
         .label-top {
-            font-size: 0.78rem;
-            letter-spacing: 5px;
+            font-size: 0.85rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
             color: var(--dorado);
-            margin-bottom: 18px;
-            opacity: 0.85;
+            margin-bottom: 20px;
+            opacity: 0.9;
         }
 
         .title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 4.5vw, 5.5rem);
-            line-height: 1.02;
-            background: linear-gradient(100deg, #ff4da6 0%, #ffd700 55%, #e879f9 100%);
+            font-size: clamp(3.2rem, 6vw, 6rem);
+            line-height: 1.05;
+            background: linear-gradient(100deg, #ff4da6 0%, #ffd700 50%, #e879f9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 3.5s ease-in-out infinite alternate;
-            margin-bottom: 8px;
+            animation: glow 4s ease-in-out infinite alternate;
+            margin-bottom: 12px;
         }
 
         .title-sub {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: clamp(1.6rem, 2.5vw, 3rem);
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 36px;
+            font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 40px;
         }
 
         @keyframes glow {
             from { filter: brightness(1) hue-rotate(0deg); }
-            to   { filter: brightness(1.3) hue-rotate(10deg); }
+            to { filter: brightness(1.4) hue-rotate(12deg); }
         }
 
         .divider {
-            width: 60px; height: 3px;
+            width: 70px;
+            height: 4px;
             background: linear-gradient(90deg, var(--rosa), var(--dorado));
-            border-radius: 2px;
-            margin-bottom: 32px;
+            border-radius: 4px;
+            margin-bottom: 40px;
         }
 
         .message {
-            font-size: clamp(1rem, 1.2vw, 1.18rem);
-            line-height: 1.75;
-            color: rgba(255,255,255,0.88);
-            max-width: 480px;
+            font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            max-width: 520px;
         }
-        .message p + p { margin-top: 14px; }
+        .message p + p { margin-top: 18px; }
 
         .cake-inline {
-            font-size: 2.4rem;
+            font-size: 3rem;
             display: inline-block;
-            margin-right: 10px;
-            animation: bounce 2.5s ease-in-out infinite;
+            margin-right: 12px;
+            animation: bounce 2.8s ease-in-out infinite;
             vertical-align: middle;
         }
+
         @keyframes bounce {
-            0%,100% { transform: translateY(0); }
-            50%      { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-18px); }
         }
 
         .col-right {
@@ -126,197 +142,223 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 80px 56px 60px 56px;
-            gap: 28px;
+            padding: 60px 40px;
+            gap: 30px;
         }
 
         .profile-card {
-            width: min(360px, 100%);
-            padding: 36px 28px;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 36px;
-            border: 1.5px solid rgba(255, 77, 166, 0.35);
+            width: min(380px, 88vw);
+            padding: 40px 30px;
+            background: rgba(255,255,255,0.09);
+            backdrop-filter: blur(32px);
+            border-radius: 40px;
+            border: 2px solid rgba(255,77,166,0.4);
             text-align: center;
             cursor: pointer;
             transition: var(--trans);
             opacity: 0;
-            transform: translateY(40px) scale(0.96);
+            transform: translateY(50px) scale(0.92);
             position: relative;
             overflow: hidden;
         }
+
         .profile-card::before {
             content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(255,77,166,0.08), rgba(255,215,0,0.05));
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,77,166,0.12), rgba(255,215,0,0.08));
             opacity: 0;
-            transition: opacity 0.5s;
-            border-radius: 36px;
+            transition: 0.6s;
         }
         .profile-card:hover::before { opacity: 1; }
-        .profile-card:hover { transform: translateY(-6px) scale(1.01); border-color: rgba(255,215,0,0.5); }
+        .profile-card:hover { transform: translateY(-8px) scale(1.03); }
         .profile-card.visible { opacity: 1; transform: translateY(0) scale(1); }
 
         .pfp-wrap {
             position: relative;
             width: fit-content;
-            margin: 0 auto 22px;
+            margin: 0 auto 26px;
         }
+
         .pfp-ring {
-            position: absolute; inset: -5px;
+            position: absolute;
+            inset: -12px;
             border-radius: 50%;
-            border: 3px solid transparent;
-            background: linear-gradient(135deg, var(--rosa), var(--dorado)) border-box;
+            border: 4px solid transparent;
+            background: linear-gradient(135deg, #ff4da6, #ffd700, #e879f9) border-box;
             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            animation: spin 6s linear infinite;
+            animation: spin 8s linear infinite;
         }
+
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .pfp {
-            width: 130px; height: 130px;
+            width: 145px;
+            height: 145px;
             border-radius: 50%;
             object-fit: cover;
-            display: block;
-            border: 4px solid rgba(255,255,255,0.15);
+            border: 6px solid rgba(255,255,255,0.25);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .card-name {
-            font-size: 2rem; font-weight: 800;
-            color: white; margin-bottom: 4px;
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 6px;
         }
+
         .card-tag {
-            font-size: 1rem; font-weight: 600;
-            color: var(--dorado); letter-spacing: 1px;
-            margin-bottom: 18px;
-        }
-        .card-stars {
-            font-size: 1.4rem;
-            letter-spacing: 4px;
-            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dorado);
+            letter-spacing: 2px;
         }
 
         .hint-text {
-            font-size: 0.78rem;
-            letter-spacing: 4px;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255,255,255,0.5);
+            margin-top: 10px;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .page {
                 grid-template-columns: 1fr;
             }
             .col-left {
-                padding: 90px 24px 40px;
-                border-right: none;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
+                padding: 100px 30px 50px;
                 text-align: center;
-                align-items: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
-            .divider { margin-left: auto; margin-right: auto; }
-            .message { text-align: left; }
-            .col-right { padding: 40px 24px 60px; }
+            .col-right {
+                padding: 40px 20px 70px;
+            }
+            .divider { margin: 0 auto 35px; }
         }
 
+        /* Confeti y partículas */
         .confetti {
-            position: fixed; top: -20px;
-            border-radius: 3px;
+            position: fixed;
+            top: -20px;
+            border-radius: 4px;
             animation: fall linear forwards;
-            z-index: 50; pointer-events: none;
+            z-index: 100;
+            pointer-events: none;
         }
+
         @keyframes fall {
-            to { transform: translateY(115vh) rotate(900deg); opacity: 0; }
+            to { transform: translateY(120vh) rotate(960deg); opacity: 0; }
         }
 
         .particle {
             position: fixed;
             border-radius: 50%;
+            z-index: 5;
             pointer-events: none;
-            z-index: 3;
             animation: float linear infinite;
-            opacity: 0.18;
+            opacity: 0.15;
         }
+
         @keyframes float {
-            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-            10%  { opacity: 0.18; }
-            90%  { opacity: 0.18; }
-            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+            0% { transform: translateY(110vh) scale(0.2); }
+            100% { transform: translateY(-20vh) scale(1.2); }
         }
     </style>
 </head>
 <body>
     <div class="bg"></div>
     <div class="bg-grad"></div>
+    
     <button class="btn-cerrar" onclick="cerrarTarjeta()">← Cerrar</button>
 
     <div class="page">
-
+        <!-- Izquierda: Mensaje -->
         <div class="col-left">
-            <span class="label-top">✨ Un día muy especial ✨</span>
+            <span class="label-top">✨ 8 de mayo ✨</span>
             <h1 class="title">¡Feliz<br>Cumpleaños!</h1>
             <h2 class="title-sub"><span class="cake-inline">🎂</span> Nataly</h2>
             <div class="divider"></div>
             <div class="message">
-                <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
-                <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
+                <p>¡Feliz cumpleaños, reina! Que este nuevo año te traiga todo lo que mereces: mucha felicidad, éxitos, risas y momentos inolvidables.</p>
+                <p>Eres una mujer increíble, llena de luz y fuerza. Sigue brillando siempre. ¡Celebra como te lo mereces! 💖</p>
             </div>
         </div>
 
+        <!-- Derecha: Tarjeta -->
         <div class="col-right">
             <div class="profile-card" id="tarjeta" onclick="abrirTarjeta(this)">
                 <div class="pfp-wrap">
                     <div class="pfp-ring"></div>
-                    <img src="img/K Pop Wallpaper.jpg" class="pfp" alt="Nataly">
+                    <img src="https://i.pinimg.com/736x/c4/b8/8f/c4b88f8ec4620f2c4d1cd9d622850268.jpg" 
+                         class="pfp" alt="Nataly">
                 </div>
                 <p class="card-name">Nataly ❤️</p>
-                <p class="card-tag">✨ La reinaa ✨</p>
-                <span class="card-stars">⭐⭐⭐</span>
+                <p class="card-tag">✨ LA REINA DEL DÍA ✨</p>
             </div>
             <p class="hint-text">Toca la tarjeta para celebrar</p>
         </div>
-
     </div>
 
     <script>
-        const COLORS = ['#ff4da6','#ffd700','#e879f9','#a78bfa','#67e8f9','#fff','#ff9de2'];
+        const COLORS = ['#ff4da6', '#ffd700', '#e879f9', '#c026d3', '#67e8f9', '#ffffff', '#ff9de2'];
 
-        function confeti(n = 110) {
-            for (let i = 0; i < n; i++) {
-                const el = document.createElement('div');
-                el.className = 'confetti';
-                const s = Math.random() * 12 + 7;
-                el.style.cssText = `left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};animation-duration:${Math.random()*5+4}s;animation-delay:${Math.random()*2}s;opacity:${Math.random()*0.4+0.6};`;
-                document.body.appendChild(el);
-                setTimeout(() => el.remove(), 9500);
+        function lanzarConfeti(cantidad = 130) {
+            for (let i = 0; i < cantidad; i++) {
+                const conf = document.createElement('div');
+                conf.className = 'confetti';
+                const size = Math.random() * 14 + 8;
+                conf.style.cssText = `
+                    left: ${Math.random() * 100}vw;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${COLORS[Math.floor(Math.random() * COLORS.length)]};
+                    animation-duration: ${Math.random() * 5 + 4}s;
+                    animation-delay: ${Math.random() * 2}s;
+                    opacity: ${Math.random() * 0.5 + 0.6};
+                `;
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 11000);
+            }
+        }
+
+        function crearParticulas() {
+            for (let i = 0; i < 22; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 7 + 4;
+                p.style.cssText = `
+                    left: ${Math.random() * 100}vw;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${COLORS[Math.floor(Math.random() * COLORS.length)]};
+                    animation-duration: ${Math.random() * 22 + 16}s;
+                    animation-delay: ${Math.random() * 12}s;
+                `;
+                document.body.appendChild(p);
             }
         }
 
         function abrirTarjeta(el) {
             el.classList.add('visible');
-            confeti(); setTimeout(confeti, 250); setTimeout(confeti, 550);
+            lanzarConfeti();
+            setTimeout(() => lanzarConfeti(60), 280);
+            setTimeout(() => lanzarConfeti(40), 650);
         }
 
         function cerrarTarjeta() {
             document.getElementById('tarjeta').classList.remove('visible');
         }
 
-        function crearParticulas() {
-            for (let i = 0; i < 18; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                const s = Math.random() * 8 + 3;
-                p.style.cssText = `left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};animation-duration:${Math.random()*18+12}s;animation-delay:${Math.random()*15}s;`;
-                document.body.appendChild(p);
-            }
-        }
-
+        // Iniciar
         window.addEventListener('load', () => {
-            confeti();
+            lanzarConfeti(90);
             crearParticulas();
-            setInterval(() => { if (Math.random() > 0.6) confeti(40); }, 2000);
+            setInterval(() => {
+                if (Math.random() > 0.55) lanzarConfeti(35);
+            }, 2200);
         });
     </script>
 </body>
