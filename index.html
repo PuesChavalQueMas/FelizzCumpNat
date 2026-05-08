@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños, Nataly! ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa: #ff4da6;
+            --dorado: #ffd700;
+            --lila: #c026d3;
+            --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a0033 0%, #4a0072 100%);
+            font-family: 'Inter', sans-serif;
+            color: white;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Fondo elegante y femenino */
+        .background {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://i.pinimg.com/736x/c4/b8/8f/c4b88f8ec4620f2c4d1cd9d622850268.jpg') top/cover no-repeat;
+            filter: brightness(0.45) blur(3px);
+            z-index: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(transparent, rgba(74, 0, 114, 0.75));
+            z-index: 2;
+        }
+
+        /* Contenido */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.2rem, 8vw, 6.5rem);
+            line-height: 1.05;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff4da6, #ffd700, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 15px 35px rgba(255, 77, 166, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: brightness(1) hue-rotate(0deg); }
+            to { filter: brightness(1.35) hue-rotate(8deg); }
+        }
+
+        .subtitle {
+            font-size: clamp(1.6rem, 5vw, 2.8rem);
+            margin-bottom: 25px;
+            color: #ffd700;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .cake {
+            font-size: clamp(4.5rem, 12vw, 8rem);
+            margin: 15px 0 25px;
+            animation: bounce 2.2s infinite ease-in-out;
+            filter: drop-shadow(0 20px 30px rgba(255, 215, 0, 0.7));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .message {
+            max-width: 680px;
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            line-height: 1.65;
+            margin: 25px auto;
+            padding: 32px 28px;
+            background: rgba(255,255,255,0.09);
+            backdrop-filter: blur(25px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 77, 166, 0.25);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Tarjeta */
+        .profile-card {
+            margin-top: 35px;
+            width: min(380px, 92vw);
+            padding: 28px 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(28px);
+            border-radius: 32px;
+            border: 2px solid rgba(255, 77, 166, 0.4);
+            transition: var(--transition);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .profile-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pfp {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 7px solid #ffd700;
+            object-fit: cover;
+            margin: 0 auto 22px;
+            display: block;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .name {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .heart {
+            color: #ff4da6;
+            font-size: 2rem;
+        }
+
+        /* Botón volver */
+        .btn-back {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            padding: 12px 26px;
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0.95;
+            transition: var(--transition);
+        }
+
+        .btn-back:hover {
+            background: rgba(255,77,166,0.6);
+            transform: scale(1.05);
+        }
+
+        /* Confeti */
+        .confetti {
+            position: absolute;
+            top: -15px;
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            animation: fall linear forwards;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(120vh) rotate(800deg);
+                opacity: 0;
+            }
+        }
+
+        .hint {
+            margin-top: 35px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .message {
+                padding: 25px 20px;
+            }
+            .profile-card {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="background"></div>
+        <div class="overlay"></div>
+
+        <button class="btn-back" onclick="cerrarTodo()">← Cerrar</button>
+
+        <div class="content">
+            <div class="cake">🎂</div>
+            
+            <h1 class="title">¡FELIZ CUMPLEAÑOS</h1>
+            <h2 class="subtitle">NATALY ✨</h2>
+            
+            <div class="message">
+                <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
+                <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
+            </div>
+
+            <div onclick="abrirTarjeta(this)" class="profile-card" id="tarjeta">
+                <img src="img/K Pop Wallpaper.jpg" 
+                     class="pfp" alt="Nataly">
+                <div>
+                    <span class="name">Nataly <span class="heart">❤️</span></span>
+                    <p style="color:#ffd700; font-weight:700; font-size:1.1rem;">La reinaa</p>
+                </div>
+            </div>
+
+            <div class="hint">Toca la tarjeta para verla brillar</div>
+        </div>
+    </div>
+
+    <script>
+        function crearConfeti() {
+            const colors = ['#ff4da6', '#ffd700', '#e879f9', '#a78bfa', '#67e8f9', '#ffffff'];
+            for (let i = 0; i < 140; i++) {
+                const confeti = document.createElement('div');
+                confeti.classList.add('confetti');
+                confeti.style.left = Math.random() * 100 + 'vw';
+                confeti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confeti.style.width = Math.random() * 15 + 9 + 'px';
+                confeti.style.height = confeti.style.width;
+                confeti.style.animationDuration = Math.random() * 4.5 + 4 + 's';
+                confeti.style.animationDelay = Math.random() * 2 + 's';
+                confeti.style.opacity = Math.random() * 0.5 + 0.6;
+                document.body.appendChild(confeti);
+                
+                setTimeout(() => confeti.remove(), 10000);
+            }
+        }
+
+        function abrirTarjeta(el) {
+            el.classList.add('visible');
+            crearConfeti();
+            setTimeout(() => crearConfeti(), 300);
+            setTimeout(() => crearConfeti(), 700);
+        }
+
+        function cerrarTodo() {
+            document.getElementById('tarjeta').classList.remove('visible');
+        }
+
+        // Iniciar todo
+        window.onload = () => {
+            crearConfeti();
+            setInterval(() => {
+                if (Math.random() > 0.5) crearConfeti();
+            }, 1600);
+        };
+    </script>
+</body>
+</html>
