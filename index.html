@@ -4,260 +4,320 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumpleaños, Nataly! ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --rosa: #ff4da6;
             --dorado: #ffd700;
-            --lila: #c026d3;
-            --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            --trans: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body, html {
-            min-height: 100%;
+        html, body {
+            width: 100%; min-height: 100%;
             overflow-x: hidden;
-            overflow-y: auto;
-            background: linear-gradient(135deg, #1a0033 0%, #4a0072 100%);
             font-family: 'Inter', sans-serif;
             color: white;
         }
 
-        .background {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://i.pinimg.com/736x/c4/b8/8f/c4b88f8ec4620f2c4d1cd9d622850268.jpg') top/cover no-repeat;
-            filter: brightness(0.45) blur(3px);
+        .bg {
+            position: fixed; inset: 0;
+            background: url('https://i.pinimg.com/736x/c4/b8/8f/c4b88f8ec4620f2c4d1cd9d622850268.jpg') center/cover no-repeat;
+            filter: brightness(0.4) blur(4px);
+            z-index: 0;
+        }
+
+        .bg-grad {
+            position: fixed; inset: 0;
+            background: linear-gradient(135deg, rgba(26,0,51,0.85) 0%, rgba(74,0,114,0.7) 100%);
             z-index: 1;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(transparent, rgba(74, 0, 114, 0.75));
-            z-index: 2;
+        .btn-cerrar {
+            position: fixed; top: 20px; left: 20px; z-index: 200;
+            padding: 10px 22px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            color: white; font-weight: 700; font-size: 0.88rem;
+            cursor: pointer; transition: var(--trans);
+        }
+        .btn-cerrar:hover { background: rgba(255,77,166,0.55); transform: scale(1.04); }
+
+        .page {
+            position: relative; z-index: 10;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
         }
 
-        .content {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
+        .col-left {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: clamp(80px, 10vw, 100px) clamp(16px, 5vw, 60px) clamp(40px, 8vw, 80px);
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
+            padding: 80px 56px 60px 72px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .label-top {
+            font-size: 0.78rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--dorado);
+            margin-bottom: 18px;
+            opacity: 0.85;
         }
 
         .title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.4rem, 7vw, 6rem);
-            line-height: 1.05;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #ff4da6, #ffd700, #e879f9);
+            font-size: clamp(3rem, 4.5vw, 5.5rem);
+            line-height: 1.02;
+            background: linear-gradient(100deg, #ff4da6 0%, #ffd700 55%, #e879f9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 3s ease-in-out infinite alternate;
-            word-break: break-word;
+            animation: glow 3.5s ease-in-out infinite alternate;
+            margin-bottom: 8px;
+        }
+
+        .title-sub {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.6rem, 2.5vw, 3rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 36px;
         }
 
         @keyframes glow {
             from { filter: brightness(1) hue-rotate(0deg); }
-            to { filter: brightness(1.35) hue-rotate(8deg); }
+            to   { filter: brightness(1.3) hue-rotate(10deg); }
         }
 
-        .subtitle {
-            font-size: clamp(1.3rem, 4vw, 2.5rem);
-            margin-bottom: 20px;
-            color: #ffd700;
-            font-weight: 700;
-            letter-spacing: 3px;
-        }
-
-        .cake {
-            font-size: clamp(4rem, 10vw, 7rem);
-            margin: 12px 0 20px;
-            animation: bounce 2.2s infinite ease-in-out;
-            filter: drop-shadow(0 10px 20px rgba(255, 215, 0, 0.7));
-            display: block;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .divider {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--rosa), var(--dorado));
+            border-radius: 2px;
+            margin-bottom: 32px;
         }
 
         .message {
-            width: 100%;
-            max-width: 640px;
-            font-size: clamp(1rem, 2.8vw, 1.3rem);
-            line-height: 1.7;
-            margin: 20px auto;
-            padding: clamp(20px, 4vw, 32px) clamp(18px, 4vw, 28px);
-            background: rgba(255,255,255,0.09);
-            backdrop-filter: blur(25px);
-            border-radius: 28px;
-            border: 1px solid rgba(255, 77, 166, 0.25);
+            font-size: clamp(1rem, 1.2vw, 1.18rem);
+            line-height: 1.75;
+            color: rgba(255,255,255,0.88);
+            max-width: 480px;
+        }
+        .message p + p { margin-top: 14px; }
+
+        .cake-inline {
+            font-size: 2.4rem;
+            display: inline-block;
+            margin-right: 10px;
+            animation: bounce 2.5s ease-in-out infinite;
+            vertical-align: middle;
+        }
+        @keyframes bounce {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-10px); }
         }
 
-        .message p + p {
-            margin-top: 12px;
+        .col-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 56px 60px 56px;
+            gap: 28px;
         }
 
         .profile-card {
-            margin-top: 30px;
-            width: min(360px, 90vw);
-            padding: clamp(20px, 4vw, 28px) clamp(16px, 4vw, 22px);
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(28px);
-            border-radius: 32px;
-            border: 2px solid rgba(255, 77, 166, 0.4);
-            transition: var(--transition);
+            width: min(360px, 100%);
+            padding: 36px 28px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 36px;
+            border: 1.5px solid rgba(255, 77, 166, 0.35);
+            text-align: center;
             cursor: pointer;
+            transition: var(--trans);
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(40px) scale(0.96);
+            position: relative;
+            overflow: hidden;
         }
+        .profile-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,77,166,0.08), rgba(255,215,0,0.05));
+            opacity: 0;
+            transition: opacity 0.5s;
+            border-radius: 36px;
+        }
+        .profile-card:hover::before { opacity: 1; }
+        .profile-card:hover { transform: translateY(-6px) scale(1.01); border-color: rgba(255,215,0,0.5); }
+        .profile-card.visible { opacity: 1; transform: translateY(0) scale(1); }
 
-        .profile-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .pfp-wrap {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto 22px;
         }
+        .pfp-ring {
+            position: absolute; inset: -5px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, var(--rosa), var(--dorado)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: spin 6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         .pfp {
-            width: clamp(100px, 25vw, 130px);
-            height: clamp(100px, 25vw, 130px);
+            width: 130px; height: 130px;
             border-radius: 50%;
-            border: 6px solid #ffd700;
             object-fit: cover;
-            margin: 0 auto 18px;
+            display: block;
+            border: 4px solid rgba(255,255,255,0.15);
+        }
+
+        .card-name {
+            font-size: 2rem; font-weight: 800;
+            color: white; margin-bottom: 4px;
+        }
+        .card-tag {
+            font-size: 1rem; font-weight: 600;
+            color: var(--dorado); letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+        .card-stars {
+            font-size: 1.4rem;
+            letter-spacing: 4px;
             display: block;
         }
 
-        .name {
-            font-size: clamp(1.8rem, 5vw, 2.4rem);
-            font-weight: 800;
-            color: white;
-            margin-bottom: 6px;
+        .hint-text {
+            font-size: 0.78rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
         }
 
-        .heart { color: #ff4da6; }
-
-        .btn-back {
-            position: fixed;
-            top: 18px;
-            left: 18px;
-            padding: 10px 22px;
-            background: rgba(0,0,0,0.45);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50px;
-            color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            z-index: 100;
-            transition: var(--transition);
-        }
-
-        .btn-back:hover {
-            background: rgba(255,77,166,0.6);
-            transform: scale(1.05);
+        @media (max-width: 768px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+            .col-left {
+                padding: 90px 24px 40px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                text-align: center;
+                align-items: center;
+            }
+            .divider { margin-left: auto; margin-right: auto; }
+            .message { text-align: left; }
+            .col-right { padding: 40px 24px 60px; }
         }
 
         .confetti {
-            position: fixed;
-            top: -15px;
-            width: 12px;
-            height: 12px;
+            position: fixed; top: -20px;
             border-radius: 3px;
             animation: fall linear forwards;
-            z-index: 5;
-            pointer-events: none;
+            z-index: 50; pointer-events: none;
         }
-
         @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(800deg);
-                opacity: 0;
-            }
+            to { transform: translateY(115vh) rotate(900deg); opacity: 0; }
         }
 
-        .hint {
-            margin-top: 28px;
-            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
-            color: rgba(255,255,255,0.65);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 3;
+            animation: float linear infinite;
+            opacity: 0.18;
+        }
+        @keyframes float {
+            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+            10%  { opacity: 0.18; }
+            90%  { opacity: 0.18; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="overlay"></div>
+    <div class="bg"></div>
+    <div class="bg-grad"></div>
+    <button class="btn-cerrar" onclick="cerrarTarjeta()">← Cerrar</button>
 
-    <button class="btn-back" onclick="cerrarTodo()">← Cerrar</button>
+    <div class="page">
 
-    <div class="content">
-        <span class="cake">🎂</span>
-
-        <h1 class="title">¡FELIZ CUMPLEAÑOS</h1>
-        <h2 class="subtitle">NATALY ✨</h2>
-
-        <div class="message">
-            <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
-            <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
-        </div>
-
-        <div onclick="abrirTarjeta(this)" class="profile-card" id="tarjeta">
-            <img src="img/K Pop Wallpaper.jpg"
-                 class="pfp" alt="Nataly">
-            <div>
-                <p class="name">Nataly <span class="heart">❤️</span></p>
-                <p style="color:#ffd700; font-weight:700; font-size:1.1rem;">La reinaa</p>
+        <div class="col-left">
+            <span class="label-top">✨ Un día muy especial ✨</span>
+            <h1 class="title">¡Feliz<br>Cumpleaños!</h1>
+            <h2 class="title-sub"><span class="cake-inline">🎂</span> Nataly</h2>
+            <div class="divider"></div>
+            <div class="message">
+                <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
+                <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
             </div>
         </div>
 
-        <p class="hint">Toca la tarjeta para verla brillar</p>
+        <div class="col-right">
+            <div class="profile-card" id="tarjeta" onclick="abrirTarjeta(this)">
+                <div class="pfp-wrap">
+                    <div class="pfp-ring"></div>
+                    <img src="img/K Pop Wallpaper.jpg" class="pfp" alt="Nataly">
+                </div>
+                <p class="card-name">Nataly ❤️</p>
+                <p class="card-tag">✨ La reinaa ✨</p>
+                <span class="card-stars">⭐⭐⭐</span>
+            </div>
+            <p class="hint-text">Toca la tarjeta para celebrar</p>
+        </div>
+
     </div>
 
     <script>
-        function crearConfeti() {
-            const colors = ['#ff4da6','#ffd700','#e879f9','#a78bfa','#67e8f9','#ffffff'];
-            for (let i = 0; i < 120; i++) {
-                const c = document.createElement('div');
-                c.classList.add('confetti');
-                c.style.left = Math.random() * 100 + 'vw';
-                c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                const s = Math.random() * 13 + 8 + 'px';
-                c.style.width = s; c.style.height = s;
-                c.style.animationDuration = Math.random() * 4 + 4 + 's';
-                c.style.animationDelay = Math.random() * 2 + 's';
-                c.style.opacity = Math.random() * 0.5 + 0.6;
-                document.body.appendChild(c);
-                setTimeout(() => c.remove(), 9000);
+        const COLORS = ['#ff4da6','#ffd700','#e879f9','#a78bfa','#67e8f9','#fff','#ff9de2'];
+
+        function confeti(n = 110) {
+            for (let i = 0; i < n; i++) {
+                const el = document.createElement('div');
+                el.className = 'confetti';
+                const s = Math.random() * 12 + 7;
+                el.style.cssText = `left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};animation-duration:${Math.random()*5+4}s;animation-delay:${Math.random()*2}s;opacity:${Math.random()*0.4+0.6};`;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 9500);
             }
         }
 
         function abrirTarjeta(el) {
             el.classList.add('visible');
-            crearConfeti();
-            setTimeout(crearConfeti, 300);
-            setTimeout(crearConfeti, 700);
+            confeti(); setTimeout(confeti, 250); setTimeout(confeti, 550);
         }
 
-        function cerrarTodo() {
+        function cerrarTarjeta() {
             document.getElementById('tarjeta').classList.remove('visible');
         }
 
-        window.onload = () => {
-            crearConfeti();
-            setInterval(() => { if (Math.random() > 0.5) crearConfeti(); }, 1800);
-        };
+        function crearParticulas() {
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const s = Math.random() * 8 + 3;
+                p.style.cssText = `left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};animation-duration:${Math.random()*18+12}s;animation-delay:${Math.random()*15}s;`;
+                document.body.appendChild(p);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            confeti();
+            crearParticulas();
+            setInterval(() => { if (Math.random() > 0.6) confeti(40); }, 2000);
+        });
     </script>
 </body>
 </html>
