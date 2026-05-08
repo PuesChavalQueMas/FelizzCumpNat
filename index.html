@@ -23,6 +23,15 @@
             background: #0a001a;
         }
 
+        /* Móvil: scroll habilitado */
+        @media (max-width: 768px) {
+            html, body {
+                height: auto;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+
         .bg {
             position: fixed;
             inset: 0;
@@ -223,23 +232,27 @@
             margin-top: 10px;
         }
 
-        /* Responsive */
+        /* ── MÓVIL ── */
         @media (max-width: 768px) {
             .page {
                 grid-template-columns: 1fr;
+                height: auto;
+                min-height: 100vh;
             }
             .col-left {
-                padding: 100px 30px 50px;
+                padding: 100px 28px 50px;
                 text-align: center;
+                align-items: center;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
             .col-right {
-                padding: 40px 20px 70px;
+                padding: 50px 20px 80px;
             }
             .divider { margin: 0 auto 35px; }
+            .message { text-align: left; }
+            .profile-card { width: min(360px, 90vw); }
         }
 
-        /* Confeti y partículas */
         .confetti {
             position: fixed;
             top: -20px;
@@ -275,19 +288,17 @@
     <button class="btn-cerrar" onclick="cerrarTarjeta()">← Cerrar</button>
 
     <div class="page">
-        <!-- Izquierda: Mensaje -->
         <div class="col-left">
             <span class="label-top">✨ 8 de mayo ✨</span>
             <h1 class="title">¡Feliz<br>Cumpleaños!</h1>
             <h2 class="title-sub"><span class="cake-inline">🎂</span> Nathaly</h2>
             <div class="divider"></div>
             <div class="message">
-    <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
-    <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
-</div>
+                <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
+                <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
+            </div>
         </div>
 
-        <!-- Derecha: Tarjeta -->
         <div class="col-right">
             <div class="profile-card" id="tarjeta" onclick="abrirTarjeta(this)">
                 <div class="pfp-wrap">
@@ -352,7 +363,6 @@
             document.getElementById('tarjeta').classList.remove('visible');
         }
 
-        // Iniciar
         window.addEventListener('load', () => {
             lanzarConfeti(90);
             crearParticulas();
