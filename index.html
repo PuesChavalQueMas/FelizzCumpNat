@@ -12,27 +12,20 @@
             --lila: #c026d3;
             --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body, html {
-            height: 100%;
-            overflow: hidden;
+            min-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
             background: linear-gradient(135deg, #1a0033 0%, #4a0072 100%);
             font-family: 'Inter', sans-serif;
             color: white;
         }
 
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 100vw;
-            position: relative;
-        }
-
-        /* Fondo elegante y femenino */
         .background {
-            position: absolute;
+            position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://i.pinimg.com/736x/c4/b8/8f/c4b88f8ec4620f2c4d1cd9d622850268.jpg') top/cover no-repeat;
             filter: brightness(0.45) blur(3px);
@@ -40,35 +33,37 @@
         }
 
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(transparent, rgba(74, 0, 114, 0.75));
             z-index: 2;
         }
 
-        /* Contenido */
         .content {
             position: relative;
             z-index: 10;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: clamp(80px, 10vw, 100px) clamp(16px, 5vw, 60px) clamp(40px, 8vw, 80px);
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3.2rem, 8vw, 6.5rem);
+            font-size: clamp(2.4rem, 7vw, 6rem);
             line-height: 1.05;
             margin-bottom: 10px;
             background: linear-gradient(90deg, #ff4da6, #ffd700, #e879f9);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 15px 35px rgba(255, 77, 166, 0.5);
             animation: glow 3s ease-in-out infinite alternate;
+            word-break: break-word;
         }
 
         @keyframes glow {
@@ -77,43 +72,47 @@
         }
 
         .subtitle {
-            font-size: clamp(1.6rem, 5vw, 2.8rem);
-            margin-bottom: 25px;
+            font-size: clamp(1.3rem, 4vw, 2.5rem);
+            margin-bottom: 20px;
             color: #ffd700;
             font-weight: 700;
             letter-spacing: 3px;
         }
 
         .cake {
-            font-size: clamp(4.5rem, 12vw, 8rem);
-            margin: 15px 0 25px;
+            font-size: clamp(4rem, 10vw, 7rem);
+            margin: 12px 0 20px;
             animation: bounce 2.2s infinite ease-in-out;
-            filter: drop-shadow(0 20px 30px rgba(255, 215, 0, 0.7));
+            filter: drop-shadow(0 10px 20px rgba(255, 215, 0, 0.7));
+            display: block;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+            50% { transform: translateY(-20px); }
         }
 
         .message {
-            max-width: 680px;
-            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
-            line-height: 1.65;
-            margin: 25px auto;
-            padding: 32px 28px;
+            width: 100%;
+            max-width: 640px;
+            font-size: clamp(1rem, 2.8vw, 1.3rem);
+            line-height: 1.7;
+            margin: 20px auto;
+            padding: clamp(20px, 4vw, 32px) clamp(18px, 4vw, 28px);
             background: rgba(255,255,255,0.09);
             backdrop-filter: blur(25px);
-            border-radius: 32px;
+            border-radius: 28px;
             border: 1px solid rgba(255, 77, 166, 0.25);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
-        /* Tarjeta */
+        .message p + p {
+            margin-top: 12px;
+        }
+
         .profile-card {
-            margin-top: 35px;
-            width: min(380px, 92vw);
-            padding: 28px 20px;
+            margin-top: 30px;
+            width: min(360px, 90vw);
+            padding: clamp(20px, 4vw, 28px) clamp(16px, 4vw, 22px);
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(28px);
             border-radius: 32px;
@@ -121,7 +120,7 @@
             transition: var(--transition);
             cursor: pointer;
             opacity: 0;
-            transform: translateY(60px);
+            transform: translateY(50px);
         }
 
         .profile-card.visible {
@@ -130,42 +129,37 @@
         }
 
         .pfp {
-            width: 130px;
-            height: 130px;
+            width: clamp(100px, 25vw, 130px);
+            height: clamp(100px, 25vw, 130px);
             border-radius: 50%;
-            border: 7px solid #ffd700;
+            border: 6px solid #ffd700;
             object-fit: cover;
-            margin: 0 auto 22px;
+            margin: 0 auto 18px;
             display: block;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
         .name {
-            font-size: 2.4rem;
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
             font-weight: 800;
             color: white;
             margin-bottom: 6px;
         }
 
-        .heart {
-            color: #ff4da6;
-            font-size: 2rem;
-        }
+        .heart { color: #ff4da6; }
 
-        /* Botón volver */
         .btn-back {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            padding: 12px 26px;
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            padding: 10px 22px;
             background: rgba(0,0,0,0.45);
             border: 1px solid rgba(255,255,255,0.3);
             border-radius: 50px;
             color: white;
             font-weight: 700;
+            font-size: 0.9rem;
             cursor: pointer;
             z-index: 100;
-            opacity: 0.95;
             transition: var(--transition);
         }
 
@@ -174,12 +168,11 @@
             transform: scale(1.05);
         }
 
-        /* Confeti */
         .confetti {
-            position: absolute;
+            position: fixed;
             top: -15px;
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 3px;
             animation: fall linear forwards;
             z-index: 5;
@@ -188,97 +181,82 @@
 
         @keyframes fall {
             to {
-                transform: translateY(120vh) rotate(800deg);
+                transform: translateY(110vh) rotate(800deg);
                 opacity: 0;
             }
         }
 
         .hint {
-            margin-top: 35px;
-            font-size: 0.95rem;
+            margin-top: 28px;
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
             color: rgba(255,255,255,0.65);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .message {
-                padding: 25px 20px;
-            }
-            .profile-card {
-                padding: 24px 18px;
-            }
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="background"></div>
-        <div class="overlay"></div>
+    <div class="background"></div>
+    <div class="overlay"></div>
 
-        <button class="btn-back" onclick="cerrarTodo()">← Cerrar</button>
+    <button class="btn-back" onclick="cerrarTodo()">← Cerrar</button>
 
-        <div class="content">
-            <div class="cake">🎂</div>
-            
-            <h1 class="title">¡FELIZ CUMPLEAÑOS</h1>
-            <h2 class="subtitle">NATALY ✨</h2>
-            
-            <div class="message">
-                <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
-                <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
-            </div>
+    <div class="content">
+        <span class="cake">🎂</span>
 
-            <div onclick="abrirTarjeta(this)" class="profile-card" id="tarjeta">
-                <img src="img/K Pop Wallpaper.jpg" 
-                     class="pfp" alt="Nataly">
-                <div>
-                    <span class="name">Nataly <span class="heart">❤️</span></span>
-                    <p style="color:#ffd700; font-weight:700; font-size:1.1rem;">La reinaa</p>
-                </div>
-            </div>
+        <h1 class="title">¡FELIZ CUMPLEAÑOS</h1>
+        <h2 class="subtitle">NATALY ✨</h2>
 
-            <div class="hint">Toca la tarjeta para verla brillar</div>
+        <div class="message">
+            <p>¡Feliz cumple, Nat! xd Espero que estés bien y feliz. Tanto tiempo sin hablar, pero qué bueno que andes bien...</p>
+            <p>Me imagino que matándote con las tareas y las clases como siempre aeaa, ¡dale con todo! xd</p>
         </div>
+
+        <div onclick="abrirTarjeta(this)" class="profile-card" id="tarjeta">
+            <img src="img/K Pop Wallpaper.jpg"
+                 class="pfp" alt="Nataly">
+            <div>
+                <p class="name">Nataly <span class="heart">❤️</span></p>
+                <p style="color:#ffd700; font-weight:700; font-size:1.1rem;">La reinaa</p>
+            </div>
+        </div>
+
+        <p class="hint">Toca la tarjeta para verla brillar</p>
     </div>
 
     <script>
         function crearConfeti() {
-            const colors = ['#ff4da6', '#ffd700', '#e879f9', '#a78bfa', '#67e8f9', '#ffffff'];
-            for (let i = 0; i < 140; i++) {
-                const confeti = document.createElement('div');
-                confeti.classList.add('confetti');
-                confeti.style.left = Math.random() * 100 + 'vw';
-                confeti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confeti.style.width = Math.random() * 15 + 9 + 'px';
-                confeti.style.height = confeti.style.width;
-                confeti.style.animationDuration = Math.random() * 4.5 + 4 + 's';
-                confeti.style.animationDelay = Math.random() * 2 + 's';
-                confeti.style.opacity = Math.random() * 0.5 + 0.6;
-                document.body.appendChild(confeti);
-                
-                setTimeout(() => confeti.remove(), 10000);
+            const colors = ['#ff4da6','#ffd700','#e879f9','#a78bfa','#67e8f9','#ffffff'];
+            for (let i = 0; i < 120; i++) {
+                const c = document.createElement('div');
+                c.classList.add('confetti');
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                const s = Math.random() * 13 + 8 + 'px';
+                c.style.width = s; c.style.height = s;
+                c.style.animationDuration = Math.random() * 4 + 4 + 's';
+                c.style.animationDelay = Math.random() * 2 + 's';
+                c.style.opacity = Math.random() * 0.5 + 0.6;
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 9000);
             }
         }
 
         function abrirTarjeta(el) {
             el.classList.add('visible');
             crearConfeti();
-            setTimeout(() => crearConfeti(), 300);
-            setTimeout(() => crearConfeti(), 700);
+            setTimeout(crearConfeti, 300);
+            setTimeout(crearConfeti, 700);
         }
 
         function cerrarTodo() {
             document.getElementById('tarjeta').classList.remove('visible');
         }
 
-        // Iniciar todo
         window.onload = () => {
             crearConfeti();
-            setInterval(() => {
-                if (Math.random() > 0.5) crearConfeti();
-            }, 1600);
+            setInterval(() => { if (Math.random() > 0.5) crearConfeti(); }, 1800);
         };
     </script>
 </body>
